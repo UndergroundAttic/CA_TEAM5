@@ -8,25 +8,25 @@ void setup(){
   vx=7; vy=7; vs=1;
   sizefac = 50;
   colorfac = 0;
-  //face
 }
 
 void draw() {
   background(240);
+  
   x0 += vx; y0 += vy;
+  vx = restrictX(x0, vx);
+  vy = restrictY(y0, vy);
+  face0(x0,y0);
+  
   sizefac += vs;
   if (sizefac > 100 || sizefac < 50) {
     vs = -vs;
   }
+  face1(x1,y1,sizefac);
+  
   colorvar+=1;
   colorfac = (colorvar / 60) % 3;
-  
-  vx = restrictX(x0, vx);
-  vy = restrictY(y0, vy);
-    
-  face0(x0,y0);
-  face1(x1,y1,sizefac);
-  star(x2,y2,colorfac);
+  star(x2,y2,colorfac);  
 }
 
 void mouseClicked() {
