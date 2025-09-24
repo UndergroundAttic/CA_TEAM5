@@ -1,26 +1,32 @@
 float x0,y0,x1,y1,x2,y2;
-float vx0,vy0,vx1,vy1,vx2,vy2;
+float vx,vy,vs;
+int sizefac, colorvar, colorfac;
+
 void setup(){
   size(800,600);
   initialize_random_pos();
-  vx0=vx1=vx2=7; vy0=vy1=vy2=7;
+  vx=7; vy=7; vs=1;
+  sizefac = 50;
+  colorfac = 0;
   //face
 }
 
 void draw() {
   background(240);
-  x0 += vx0; x1 += vx1; x2 += vx2; y0 += vy0; y1 += vy1; y2 += vy2;
+  x0 += vx; y0 += vy;
+  sizefac += vs;
+  if (sizefac > 100 || sizefac < 50) {
+    vs = -vs;
+  }
+  colorvar+=1;
+  colorfac = (colorvar / 60) % 3;
   
-  vx0 = restrictX(x0, vx0);
-  vy0 = restrictY(y0, vy0);
-  vx1 = restrictX(x1, vx1);
-  vy1 = restrictY(y1, vy1);
-  vx2 = restrictX(x2, vx2);
-  vy2 = restrictY(y2, vy2);
+  vx = restrictX(x0, vx);
+  vy = restrictY(y0, vy);
     
   face0(x0,y0);
-  face1(x1,y1);
-  star(x2,y2);
+  face1(x1,y1,sizefac);
+  star(x2,y2,colorfac);
 }
 
 void mouseClicked() {
@@ -28,12 +34,12 @@ void mouseClicked() {
 }
 
 void initialize_random_pos() {
-  x0=400+random(-300,250);
-  x1=400+random(-300,250);
-  x2=400+random(-300,250);
-  y0=300+random(-300,250);
-  y1=300+random(-300,250);
-  y2=300+random(-300,250);
+  x0=400+random(-300,200);
+  x1=400+random(-300,200);
+  x2=400+random(-300,200);
+  y0=300+random(-300,200);
+  y1=300+random(-300,200);
+  y2=300+random(-300,200);
 }
 
 float restrictX(float x, float vx) {
@@ -68,23 +74,29 @@ void face0(float x,float y) {
 }
 
 //박세혁
-void face1(float x, float y) {
+void face1(float x, float y, int sizefac) {
     fill(255,231,211);
-    circle(x, y, 100);
+    circle(x, y, sizefac);
     fill(0);
-    arc(x, y, 100, 100, 5*QUARTER_PI, 7*QUARTER_PI, CHORD);
+    arc(x, y, sizefac, sizefac, 5*QUARTER_PI, 7*QUARTER_PI, CHORD);
     
     noFill();
-    arc(x-100/4.5, y-100/6, 100/3, 100/6, 0, PI);
-    arc(x+100/4.5, y-100/6, 100/3, 100/6, 0, PI);
+    arc(x-sizefac/4.5, y-sizefac/6, sizefac/3, sizefac/6, 0, PI);
+    arc(x+sizefac/4.5, y-sizefac/6, sizefac/3, sizefac/6, 0, PI);
     
-    arc(x, y + 100/15, 100/3, 100/4.5, QUARTER_PI, 3*QUARTER_PI);
+    arc(x, y + sizefac/15, sizefac/3, sizefac/4.5, QUARTER_PI, 3*QUARTER_PI);
 }
 
 //김원효
-void star(float x,float y){
+void star(float x,float y, int colorfac){
   stroke(0);
-  fill(0,0,204);
+  if (colorfac==0) {
+    fill(200,0,0);
+  } else if (colorfac==1) {
+    fill(0,200,0);
+  } else if (colorfac==2) {
+    fill(0,0,200);
+  }
   strokeWeight(3);
   beginShape();
   vertex(x+30,y-230);
