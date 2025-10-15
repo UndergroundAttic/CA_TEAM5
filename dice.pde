@@ -22,7 +22,7 @@ void draw() {
   }
 }
 
-// 마우스로 클릭 시, 해당 주사위 값 리턴 + 비활성화
+
 void mousePressed() {
   for (int i = 0; i < count; i++) {
     if (dices[i].isClicked(mouseX, mouseY)) {
@@ -33,7 +33,7 @@ void mousePressed() {
   }
 }
 
-// 🎲 주사위 클래스
+
 class Dice {
   float x, y;
   int size;
@@ -44,7 +44,7 @@ class Dice {
     x = x_;
     y = y_;
     size = size_;
-    roll(); // 생성 시 굴려서 초기화
+    roll();
   }
 
   void roll() {
@@ -66,7 +66,7 @@ class Dice {
     else fill(255);
     square(x, y, size);
 
-    if (value == 0) return;  // 비활성 상태면 눈 표시 안 함
+    if (value == 0) return;
 
     fill(0);
     strokeWeight(size / 5);
