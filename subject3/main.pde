@@ -29,7 +29,7 @@ void draw() {
       currentState = 0;
     }
   }
-  player.setState(State.values()[currentState]);
+  player.setState(EntityState.values()[currentState]);
   player.draw();
   player.takeDamage(1);
 }
