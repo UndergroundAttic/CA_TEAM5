@@ -8,12 +8,11 @@ class Player extends Entity {
     }
 
     void draw() {
-        draw_body();
         super.draw();
-        draw_health_bar();
     }
 
-    void draw_body() {
+    @Override
+    void main_draw() {
         fill(palette.body);
         stroke(0);
         strokeWeight(3);
