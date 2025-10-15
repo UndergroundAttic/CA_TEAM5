@@ -2,7 +2,7 @@ int count = 6;
 float returned = 0;
 int diceSize = 80;
 
-Dice[] dices;  // 주사위 객체 배열
+Dice[] dices;
 
 void setup() {
   size(800, 600);
@@ -27,7 +27,7 @@ void mousePressed() {
   for (int i = 0; i < count; i++) {
     if (dices[i].isClicked(mouseX, mouseY)) {
       returned = dices[i].value;
-      dices[i].deactivate(); // 0으로 바꾸는 부분
+      dices[i].deactivate();
       println("Returned value: " + returned);
     }
   }
