@@ -1,7 +1,11 @@
+enum EntityState {
+  IDLE, PREP, ATCK
+}
+
 class Entity {
     private int curHealth;
     private int maxHealth;
-    private State state = State.IDLE;
+    private EntityState state = EntityState.IDLE;
     protected Palette palette;
 
     Entity(int maxHealth, Palette palette) {
@@ -15,6 +19,7 @@ class Entity {
     }
 
     void draw() {
+        main_draw();
         switch (state) {
             case IDLE:
                 draw_idle_state();
@@ -26,7 +31,10 @@ class Entity {
                 draw_attack_state();
                 break;
         }
+        draw_health_bar();
     }
+
+    void main_draw() {}
 
     void draw_attack_state() {}
 
@@ -34,11 +42,11 @@ class Entity {
 
     void draw_idle_state() {}
 
-    protected void setState(State newState) {
+    protected void setState(EntityState newState) {
         this.state = newState;
     }
 
-    public State getState() {
+    public EntityState getState() {
         return state;
     }
 
