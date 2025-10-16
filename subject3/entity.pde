@@ -2,23 +2,24 @@ enum EntityState {
   IDLE, PREP, ATCK
 }
 
-class Entity {
+class Entity extends GameObject {
     private int curHealth;
     private int maxHealth;
     private EntityState state = EntityState.IDLE;
     protected Palette palette;
 
-    Entity(int maxHealth, Palette palette) {
+    Entity(float x, float y, int size, int maxHealth, Palette palette) {
+        super(x, y, size);
         this.curHealth = maxHealth;
         this.maxHealth = maxHealth;
         this.palette = palette;
     }
 
-    void destroy() {
-        // TODO: Implement entity Death logic
-    }
-
+    @Override
     void draw() {
+        translate(posX, posY);
+        scale(size / 100.0);
+        
         main_draw();
         switch (state) {
             case IDLE:
@@ -32,6 +33,9 @@ class Entity {
                 break;
         }
         draw_health_bar();
+
+        scale(100.0 / size);
+        translate(-posX, -posY);
     }
 
     void main_draw() {}
