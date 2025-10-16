@@ -1,15 +1,22 @@
-class Tile {
+class Tile extends GameObject {
     int index;
     int baseValue = 1;
     int modifier = 0;
 
-    Tile(int Index) {
+    Tile(float posX, float posY, int size, int Index) {
+        super(posX, posY, size);
         this.index = Index;
     }
 
     void draw() {
+        translate(posX, posY);
+        scale(size / 100.0);
+
         fill(color(200, 255, 200));
-        rect(-50, -50, 100, 100);
+        rect(0, 0, size, size);
+
+        scale(100.0 / size);
+        translate(-posX, -posY);
     }
 
     void execute() {
@@ -18,8 +25,8 @@ class Tile {
 }
 
 class AttackTile extends Tile {
-    AttackTile(int index) {
-        super(index);
+    AttackTile(float posX, float posY, int size, int index) {
+        super(posX, posY, size, index);
     }
 
     @Override
@@ -37,8 +44,8 @@ class AttackTile extends Tile {
 }
 
 class SpecialTile extends Tile {
-    SpecialTile(int index) {
-        super(index);
+    SpecialTile(float posX, float posY, int size, int index) {
+        super(posX, posY, size, index);
     }
 
     @Override
@@ -56,8 +63,8 @@ class SpecialTile extends Tile {
 }
 
 class HealTile extends Tile {
-    HealTile(int index) {
-        super(index);
+    HealTile(float posX, float posY, int size, int index) {
+        super(posX, posY, size, index);
     }
 
     @Override
@@ -75,8 +82,8 @@ class HealTile extends Tile {
 }
 
 class ShieldTile extends Tile {
-    ShieldTile(int index) {
-        super(index);
+    ShieldTile(float posX, float posY, int size, int index) {
+        super(posX, posY, size, index);
     }
 
     @Override
