@@ -1,6 +1,6 @@
 class Player extends Entity {
-    Player(int maxHealth, Palette palette){
-        super(maxHealth, palette);
+    Player(float x, float y, int size, int maxHealth, Palette palette){
+        super(x, y, size, maxHealth, palette);
     }
 
     void move() {
@@ -8,7 +8,7 @@ class Player extends Entity {
     }
 
     void draw() {
-        super.draw();
+      super.draw();
     }
 
     @Override
