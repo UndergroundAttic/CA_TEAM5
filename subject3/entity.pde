@@ -15,6 +15,15 @@ class Entity extends GameObject {
         this.palette = palette;
     }
 
+    void reset() {
+        this.curHealth = maxHealth;
+        this.state = EntityState.IDLE;
+    }
+
+    boolean isDead() {
+        return curHealth <= 0;
+    }
+
     @Override
     void draw() {
         translate(posX, posY);
