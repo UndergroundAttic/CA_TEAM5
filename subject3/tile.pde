@@ -43,7 +43,12 @@ class Tile extends GameObject {
         translate(-posX, -posY);
     }
 
-    void execute() {
+    void execute(int points) {
+        points = (int) (points + baseValue) * modifier;
+        action(points);
+    }
+
+    protected void action(int points) {
         // Default behavior: No effect
     }
 }
@@ -58,7 +63,7 @@ class AttackTile extends Tile {
     void draw() {}
 
     @Override
-    void execute() {
+    void action(int points) {
         // Implement attack logic here
     }
 }
@@ -72,7 +77,7 @@ class SpecialTile extends Tile {
     @Override
     void draw() {}
     @Override
-    void execute() {
+    void action(int points) {
         // Implement special attack logic here
     }
 }
@@ -87,7 +92,7 @@ class HealTile extends Tile {
     void draw() {
     }
     @Override
-    void execute() {
+    void action(int points) {
         // Implement heal logic here
     }
 }
@@ -107,7 +112,7 @@ class ShieldTile extends Tile {
         text("Shield", 0, 0);
     }
     @Override
-    void execute() {
+    void action(int points) {
         // Implement shield logic here
     }
 }
