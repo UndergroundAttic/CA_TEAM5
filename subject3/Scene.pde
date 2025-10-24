@@ -1,3 +1,4 @@
+Scene currentScene;
 abstract class Scene {
   abstract void draw();
   void mousePressed() {}
@@ -84,3 +85,4 @@ class SceneGame extends Scene {
     if (turn >= 5) currentScene = new SceneGameOver(); // 예시로 전환
   }
 }
+
