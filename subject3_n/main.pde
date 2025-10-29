@@ -170,22 +170,22 @@ void draw() {
             }
 
             // 바닥 충돌 처리
-            if (pos.y > height) {
-                if (!isBomb[i]) {
-                    // 폭탄 공은 바닥에 닿아도 튕겨오름
-                    vel.y *= -1;
-                    pos.y = height - 10;
-                } else {
-                    // 일반 공은 제거
-                    removeBall(i);
-                    // 공 제거 후 공 개수가 2개 이하가 되면 모든 공을 일반 공으로 설정
-                    if (ballCount <= 2) {
-                        for (int k = 0; k < ballCount; k++) {
-                            isBomb[k] = true;
-                        }
-                    }
-                }
+if (pos.y > height) {
+    if (!isBomb[i]) {
+        // 폭탄 공은 바닥에 닿아도 튕겨오름
+        vel.y *= -1;
+        pos.y = height - 10;
+    } else {
+        // 일반 공은 제거
+        removeBall(i);
+        // 공 제거 후 공 개수가 2개 이하가 되면 모든 공을 일반 공으로 설정
+        if (ballCount <= 2) {
+            for (int k = 0; k < ballCount; k++) {
+                isBomb[k] = true;
             }
+        }
+    }
+}
         }
 
         // 모든 공이 없어지면 게임 오버
